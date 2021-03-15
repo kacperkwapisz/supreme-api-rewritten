@@ -72,13 +72,15 @@ supreme.seek(category, keywords, style, (product, err) => {
     console.log(product);
     console.log(product.title); // example => Supreme®/UNDERCOVER Wool Overcoat
 });
-
 ```
 
 ### Features
 * [x] Check for items under desired category
 * [x] Check for item under desired url
-* [x] Seek for items on desired category page with specific keywords/styles.
+* [x] Seek for items on desired category page with specific keywords.
+* [x] Seek for a new item every x seconds.
+* [x] Seek for changes in items on desired category page every x seconds.
+* [x] Cancel seek for changes in items
 * [ ] Watch and seek for changes on individual items. (Coming Very Soon)
 * [ ] Send new items to discord using webhook
 
