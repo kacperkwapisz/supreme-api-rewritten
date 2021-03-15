@@ -1,0 +1,23 @@
+{
+  "name": "supreme-api-rewritten",
+  "version": "1.0.0",
+  "description": "Rewritten Node.js API for supremenewyork.com",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "echo \"[supreme-api-rewritten] Thanks for trying out the API! Feel free to commit issues on github.com/kacperkwapisz/supreme-api-rewritten\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kacperkwapisz/supreme-api-rewritten.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kacperkwapisz/supreme-api-rewritten/issues"
+  },
+  "author": "Kacper Kwapisz <kacper.kwapisz@mail.com> (https://kapi.dev)",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5"
+  }
+}
