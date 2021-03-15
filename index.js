@@ -241,7 +241,7 @@ api.getItem = function(itemURL, callback) {
                 metadata.images.push('https:' + $('#img-main').attr('src'))
             }
 
-            callback(null, metadata);
+            callback(metadata, null);
         })
         .catch(function (error) {
             // handle error

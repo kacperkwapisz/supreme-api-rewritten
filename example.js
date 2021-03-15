@@ -27,5 +27,5 @@ supreme.getItem('https://www.supremenewyork.com/shop/accessories/fuwjy1dpx/td2bm
          console.log(err);
          return err;
      }
-     //console.log(item);
+     console.log(item);
 });
