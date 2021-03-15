@@ -1,6 +1,6 @@
 {
   "name": "supreme-api-rewritten",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Rewritten Node.js API for supremenewyork.com",
   "main": "index.js",
   "scripts": {

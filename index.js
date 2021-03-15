@@ -127,12 +127,12 @@ api.getItems = function(category, callback) {
                         }
 
                         var metadata = {
-                            title: $('h1').attr('itemprop', 'name').eq(1).html(),
-                            style: $('.style').attr('itemprop', 'model').text(),
+                            title: $('h1').attr('itemprop', 'name').eq(1).html().trim(),
+                            style: $('.style').attr('itemprop', 'model').text().trim(),
                             link: link,
-                            description: $('.description').text(),
+                            description: $('.description').text().trim(),
                             addCartURL: addCartURL,
-                            price: $('span[itemprop="price"]').eq(0).text(),
+                            price: $('span[itemprop="price"]').eq(0).text().trim(),
                             image: image,
                             sizesAvailable: sizesAvailable,
                             images: [],
@@ -215,12 +215,12 @@ api.getItem = function(itemURL, callback) {
             }
 
             var metadata = {
-                title: $('h1').attr('itemprop', 'name').eq(1).html(),
-                style: $('.style').attr('itemprop', 'model').text(),
+                title: $('h1').attr('itemprop', 'name').eq(1).html().trim(),
+                style: $('.style').attr('itemprop', 'model').text().trim(),
                 link: itemURL,
-                description: $('.description').text(),
+                description: $('.description').text().trim(),
                 addCartURL: addCartURL,
-                price: $('span[itemprop="price"]').eq(0).text(),
+                price: $('span[itemprop="price"]').eq(0).text().trim(),
                 image: 'http:' + $('#img-main').attr('src'),
                 sizesAvailable: sizesAvailable,
                 images: [],

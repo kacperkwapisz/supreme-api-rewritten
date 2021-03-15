@@ -22,10 +22,10 @@ const category = 'jackets';
 //     console.log(product);
 // });
 
-supreme.getItem('https://www.supremenewyork.com/shop/accessories/fuwjy1dpx/td2bm3ev8', (item, err) => {
+supreme.getItem('https://www.supremenewyork.com/shop/jackets/ep6igtufq/vob304wev', (item, err) => {
      if (err) {
          console.log(err);
          return err;
      }
-     console.log(item);
+     console.log(JSON.stringify(item));
 });

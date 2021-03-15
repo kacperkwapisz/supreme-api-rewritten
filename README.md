@@ -85,7 +85,7 @@ supreme.seek(category, keywords, style, (product, err) => {
 * [ ] Send new items to discord using webhook
 
 ### Update log
-**v1.0.1** (15.03.2021)
+**v1.0.3** (15.03.2021)
 * changed request library to axios as it's discontinued
 * fix minor bugs according to changes in the supremenewyork.com site
 
