@@ -11,43 +11,6 @@ String.prototype.capitalizeEachWord = function() {
     });
 }
 
-async function discord_webhook(webhook, item) {
-    if(webhook === ''){
-        return "No webhook specified";
-    }
-    let data = {};
-    data["username"] = "Supreme Monitor";
-    data["avatar_url"] = "https://lh3.googleusercontent.com/lPUZwKE_VV6_UxQOE_MlXVSYi77LssHVK0T9zZFFERORHI7ZhQXD-WvsMKXu5822NQ";
-    data["embeds"] = [];
-    let embed = {};
-    if (item !== '') {
-        embed["title"] = item.title;
-        embed["fields"] = [{'name': 'Color', 'value': item.style}];
-        embed["url"] = item.link;
-        embed["thumbnail"] = {'url': item.image};
-    } else {
-        embed["description"] = "Thank you for using Supreme API Rewritten. This message is to let you know that everything is working fine! Want to make a contribution? Fork the repo, add your changes, and submit a pull request. Any type of contributions (ideas, bug fixes, fixing typos, etc.) will be appreciated! https://github.com/kacperkwapisz/supreme-api-rewritten";
-    }
-    embed["color"] = 12845619;
-    embed["footer"] = {'text': 'Made by Kacper Kwapisz'};
-    embed["timestamp"] = new Date().toISOString().replace(/T/, ' ').replace(/Z/, '');
-    data["embeds"] = [embed];
-
-    const config = {
-        method: "POST",
-        data: JSON.stringify(data),
-        headers: {"Content-Type": "application/json"}
-    };
-    try {
-        axios(webhook, config)
-            .then(res => {
-                return "Payload delivered successfully, code "+res.status+".";
-            });
-    } catch (error) {
-        return error;
-    }
-}
-
 // getItem('all')
 // other options: new, jackets, shirts, tops_sweaters, sweatshirts,
 // pants, hats, bags, accessories, shoes, skate
@@ -56,9 +19,9 @@ async function discord_webhook(webhook, item) {
  * Checks for items under desired category
  *
  * @param  {String} category
+ * @param callback
  * @return {Array}
  */
-
 api.getItems = function(category, callback) {
 
     var getURL = api.url + '/shop/all/' + category;
@@ -81,8 +44,6 @@ api.getItems = function(category, callback) {
 
             var parsedResults = [];
 
-
-            // console.log(len);
             $('img').each(function(i, element) {
 
                 var nextElement = $(this).next();
@@ -94,7 +55,7 @@ api.getItems = function(category, callback) {
                 var sizesAvailable;
 
 
-                if (availability == "") availability = "Available";
+                if (availability === "") availability = "Available";
 
                 axios({method: 'GET', headers: { 'accept': 'text/html' }, url: link})
                     .then(function (response) {
@@ -103,7 +64,7 @@ api.getItems = function(category, callback) {
                         var addCartURL = api.url + $('form[id="cart-addf"]').attr('action');
 
                         var soldOut = $('b[class="button sold-out"]').eq(0);
-                        if (availability == "Sold Out") {
+                        if (availability === "Sold Out") {
                             addCartURL = null;
                         }
 
@@ -144,12 +105,12 @@ api.getItems = function(category, callback) {
                             var styles = $('.styles')[0].children;
                             for (li in styles) {
                                 for (a in styles[li].children) {
-                                    if (styles[li].children[a].attribs['data-style-name'] == metadata.style) {
+                                    if (styles[li].children[a].attribs['data-style-name'] === metadata.style) {
                                         metadata.images.push('https:' + JSON.parse(styles[li].children[a].attribs['data-images']).zoomed_url)
                                     }
                                 }
                             }
-                        } else if (title.indexOf('Skateboard') != -1) {
+                        } else if (title.indexOf('Skateboard') !== -1) {
                             // Because fuck skateboards
                             metadata.images.push('https:' + $('#img-main').attr('src'))
                         }
@@ -177,9 +138,9 @@ api.getItems = function(category, callback) {
  * Checks for item under desired url
  *
  * @param  {String} itemURL
+ * @param callback
  * @return {Array}
  */
-
 api.getItem = function(itemURL, callback) {
     axios({method: 'GET', headers: { 'accept': 'text/html' }, url: itemURL})
         .then(function (response) {
@@ -232,12 +193,12 @@ api.getItem = function(itemURL, callback) {
                 var styles = $('.styles')[0].children;
                 for (li in styles) {
                     for (a in styles[li].children) {
-                        if (styles[li].children[a].attribs['data-style-name'] == metadata.style) {
+                        if (styles[li].children[a].attribs['data-style-name'] === metadata.style) {
                             metadata.images.push('https:' + JSON.parse(styles[li].children[a].attribs['data-images']).zoomed_url)
                         }
                     }
                 }
-            } else if (title.indexOf('Skateboard') != -1) {
+            } else if (title.indexOf('Skateboard') !== -1) {
                 metadata.images.push('https:' + $('#img-main').attr('src'))
             }
 
@@ -250,6 +211,15 @@ api.getItem = function(itemURL, callback) {
 };
 
 api.watchOnAllItems = [];
+
+/**
+ * Seek for a new item every x seconds under desired category
+ *
+ * @param  {Number} interval
+ * @param  {String} category
+ * @param callback
+ * @return {Array}
+ */
 api.watchAllItems = function(interval, category, callback) {
     api.log('Now watching for all items');
     api.watchOnAllItems = setInterval(function() {
@@ -259,39 +229,40 @@ api.watchAllItems = function(interval, category, callback) {
     }, 1000 * interval); // Every xx sec
 }
 
+/**
+ * Stop seeking for a new item every x seconds under desired category
+ *
+ * @return {Array}
+ */
 api.stopWatchingAllItems = function(callback) {
     clearInterval(api.watchOnAllItems);
-    if (api.watchOnAllItems == "") {
+    if (api.watchOnAllItems === "") {
         callback(null, 'No watching processes found.');
     } else {
         callback('Watching has stopped.', null);
     }
 }
 
-// searches for new item drop TODO
-/*api.onNewItem = function(discordwebhookurl, interval, callback) {
-    discord_webhook(discordwebhookurl, "");
+/**
+ * Look for a new item every x seconds
+ *
+ * @param {Number} interval
+ * @param callback
+ * @return {Array}
+ */
+api.onNewItem = function(interval, callback) {
     api.watchAllItems(interval, "new", (item, err) => {
         if (err) {
              console.log(err);
-             api.stopWatchingAllItems();
-            return callback(null, err);
+             return callback(null, err);
         }
-        if(item) {
-            discord_webhook(discordwebhookurl, item)
-                .then(function (response) {
-                    callback(item.title+" now dropped!", null);
-                })
-                .catch(function (error) {
-                    callback(error);
-                })
-        }
+        callback(item, null);
     });
-}*/
+}
 
 /**
  * Seeks for items on desired category page with specific keywords/styles.
- * @param  {String} category
+ *
  * @param  {String} category
  * @param keywords
  * @param styleSelection

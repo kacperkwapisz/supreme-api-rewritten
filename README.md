@@ -81,17 +81,15 @@ supreme.seek(category, keywords, style, (product, err) => {
 * [x] Seek for a new item every x seconds.
 * [x] Seek for changes in items on desired category page every x seconds.
 * [x] Cancel seek for changes in items
-* [ ] Watch and seek for changes on individual items. (Coming Very Soon)
-* [ ] Send new items to discord using webhook
+* [x] Watch and seek for changes on individual items.
+* [ ] more coming soon!
 
 ### Update log
-**v1.0.3** (15.03.2021)
-* changed request library to axios as it's discontinued
-* fix minor bugs according to changes in the supremenewyork.com site
+Can be found **[here](https://supapi.js.org/CHANGELOG.html)**
 
 ## Contribution
 Want to make a contribution? Fork the repo, add your changes, and submit a pull request. Any type of contributions (ideas, bug fixes, fixing typos, etc.) will be appreciated!
 
 
 ## License
-supreme-api-rewritten is licensed under [MIT License](https://github.com/kacperkwapisz/supreme-api-rewritten/blob/master/LICENSE).
+supreme-api-rewritten is licensed under [MIT License](https://github.com/kacperkwapisz/supreme-api-rewritten/blob/main/LICENSE).

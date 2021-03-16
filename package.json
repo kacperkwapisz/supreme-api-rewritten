@@ -7,6 +7,8 @@
     "postinstall": "echo \"[supreme-api-rewritten] Thanks for trying out the API! Feel free to commit issues on github.com/kacperkwapisz/supreme-api-rewritten\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": ["example.js"],
+  "homepage": "https://supapi.js.org",
   "repository": {
     "type": "git",
     "url": "git://github.com/kacperkwapisz/supreme-api-rewritten.git"
