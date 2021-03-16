@@ -1,12 +1,14 @@
 {
   "name": "supreme-api-rewritten",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Rewritten Node.js API for supremenewyork.com",
   "main": "index.js",
   "scripts": {
     "postinstall": "echo \"[supreme-api-rewritten] Thanks for trying out the API! Feel free to commit issues on github.com/kacperkwapisz/supreme-api-rewritten\""
   },
-  "files": ["example.js"],
+  "files": [
+    "example.js"
+  ],
   "homepage": "https://supapi.js.org",
   "repository": {
     "type": "git",
